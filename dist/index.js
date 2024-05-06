@@ -103,7 +103,6 @@ var init_style = __esm({
       },
       arrow: {
         position: "absolute",
-        borderColor: "transparent",
         borderWidth: ARROW_SIZE
       },
       tooltip: {
@@ -563,13 +562,21 @@ var CopilotModal = (0, import_react5.forwardRef)(
         const horizontalPosition = relativeToLeft > relativeToRight ? "left" : "right";
         const tooltip = {};
         const arrow = {};
+        arrow.position = "absolute";
+        console.log("verticalPosition", verticalPosition);
         if (verticalPosition === "bottom") {
           tooltip.top = rect.y + rect.height + margin;
           arrow.borderBottomColor = arrowColor;
+          arrow.borderTopColor = "transparent";
+          arrow.borderLeftColor = "transparent";
+          arrow.borderRightColor = "transparent";
           arrow.top = tooltip.top - arrowSize * 2;
         } else {
           tooltip.bottom = newMeasuredLayout.height - (rect.y - margin);
           arrow.borderTopColor = arrowColor;
+          arrow.borderLeftColor = "transparent";
+          arrow.borderRightColor = "transparent";
+          arrow.borderBottomColor = "transparent";
           arrow.bottom = tooltip.bottom - arrowSize * 2;
         }
         if (horizontalPosition === "left") {
